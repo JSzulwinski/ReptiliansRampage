@@ -43,6 +43,9 @@ void cRocket::update(double deltaTime)
 	
 	this->setSpritePos({ currentSpritePos.x , currentSpritePos.y  });
 	this->setBoundingRect(this->getSpritePos());
+
+	this->scaleSprite();
+	this->setSpriteCentre({ 24, 0 });
 }
 /*
 =================================================================

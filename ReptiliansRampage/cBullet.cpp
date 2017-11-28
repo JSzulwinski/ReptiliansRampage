@@ -49,6 +49,8 @@ void cBullet::update(double deltaTime)
 		this->setActive(false);
 	}
 
+	this->scaleSprite();
+
 }
 /*
 =================================================================

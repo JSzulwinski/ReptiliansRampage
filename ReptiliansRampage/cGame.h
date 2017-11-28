@@ -93,6 +93,10 @@ private:
 	int lives;
 	string theStrLives;
 	int astro;
+	fstream file;
+	string highScore;
+	int currentScore;
+	//LPCSTR LPCHigh;
 };
 
 #endif

@@ -30,25 +30,28 @@ void cAsteroid::update(double deltaTime)
 
 	this->scaleSprite();
 
-	if (currentSpritePos.x >= 850)
+	if (currentSpritePos.x > 990 && currentSpritePos.y < 1000)
 	{ 
-		this->maxRight = true;
+		this->setSpriteTranslation({ -getSpriteTranslation().x, getSpriteTranslation().y });
+		//this->maxRight = true;
 	}
-	else if (currentSpritePos.x <= 0)
+	else if (currentSpritePos.x < 0 && currentSpritePos.x > -10)
 	{
-		this->maxRight = false;
+		this->setSpriteTranslation({ -getSpriteTranslation().x, getSpriteTranslation().y });
+		//this->maxRight = false;
 	}
 
+	/*
 	if (this->maxRight == false)
 	{
 		//this->setSpriteTranslation({ 0, 0 });
-		this->setSpriteTranslation({ 200, 60 });
+		this->setSpriteTranslation({ -getSpriteTranslation().x, 60 });
 	}
 	if (this->maxRight == true)
 	{
 		//this->setSpriteTranslation({ 0, 0 });
-		this->setSpriteTranslation({ -200, 60 });
-	}	
+		this->setSpriteTranslation({ -getSpriteTranslation().x, 60 });
+	}	*/
 
 	this->setSpritePos({ currentSpritePos.x, currentSpritePos.y });
 	cout << "Asteroid position - x: " << this->getSpritePos().x << " y: " << this->getSpritePos().y << " deltaTime: " << deltaTime << endl;
