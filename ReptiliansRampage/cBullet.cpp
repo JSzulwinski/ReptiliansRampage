@@ -48,6 +48,11 @@ void cBullet::update(double deltaTime)
 	{
 		this->setActive(false);
 	}
+	if (currentSpritePos.y > 800)
+	{
+		this->setActive(false);
+	}
+
 
 	this->scaleSprite();
 

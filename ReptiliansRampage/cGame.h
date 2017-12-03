@@ -44,6 +44,8 @@ private:
 
 	// Sprites for displaying background and rocket textures
 	cSprite spriteBkgd;
+	cSprite	spriteTitle;
+	cSprite spriteMenu;
 	cRocket theRocket;
 	cAsteroid theAsteroid;
 	cBullet theBullet;
@@ -53,6 +55,7 @@ private:
 	vector<LPCSTR> texturesToUse;
 	vector<cAsteroid*> theAsteroids;
 	vector<cBullet*> theBullets;
+	vector<cBullet*> theProjectiles;
 	// Fonts to use
 	vector<LPCSTR> fontList;
 	vector<LPCSTR> fontsToUse;
@@ -96,7 +99,10 @@ private:
 	fstream file;
 	string highScore;
 	int currentScore;
-	//LPCSTR LPCHigh;
+	string theStrHighScore;
+	LPCSTR LPCHigh;
+	bool updateEnemies;
+	bool timePassed;
 };
 
 #endif

@@ -30,12 +30,12 @@ void cAsteroid::update(double deltaTime)
 
 	this->scaleSprite();
 
-	if (currentSpritePos.x > 990 && currentSpritePos.y < 1000)
+	if (currentSpritePos.x > 990 && currentSpritePos.y < 1050)
 	{ 
 		this->setSpriteTranslation({ -getSpriteTranslation().x, getSpriteTranslation().y });
 		//this->maxRight = true;
 	}
-	else if (currentSpritePos.x < 0 && currentSpritePos.x > -10)
+	else if (currentSpritePos.x < 0 && currentSpritePos.x > -50)
 	{
 		this->setSpriteTranslation({ -getSpriteTranslation().x, getSpriteTranslation().y });
 		//this->maxRight = false;

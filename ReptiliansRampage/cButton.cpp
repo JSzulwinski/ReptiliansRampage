@@ -34,6 +34,7 @@ gameState cButton::update(gameState theCurrentGameState, gameState newGameState,
 		return newGameState;
 	}
 	return theCurrentGameState;
+
 }
 
 bool cButton::getClicked()

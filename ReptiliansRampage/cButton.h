@@ -21,7 +21,6 @@ public:
 	cButton();
 
 	gameState update(gameState theCurrentGameState, gameState newGameState, SDL_Point theAreaClicked);
-
 	bool getClicked();
 	void setClicked(bool state);
 
