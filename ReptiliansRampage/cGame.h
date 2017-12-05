@@ -44,16 +44,19 @@ private:
 
 	// Sprites for displaying background and rocket textures
 	cSprite spriteBkgd;
-	cSprite	spriteTitle;
 	cSprite spriteMenu;
 	cRocket theRocket;
 	cAsteroid theAsteroid;
 	cBullet theBullet;
+	cSprite Heart1;
+	cSprite Heart2;
+	cSprite Heart3;
 	// game related variables
 	vector<LPCSTR> textureName;
 	vector<LPCSTR> textName;
 	vector<LPCSTR> texturesToUse;
 	vector<cAsteroid*> theAsteroids;
+	vector<cAsteroid*> theBoss;
 	vector<cBullet*> theBullets;
 	vector<cBullet*> theProjectiles;
 	// Fonts to use
@@ -96,13 +99,20 @@ private:
 	int lives;
 	string theStrLives;
 	int astro;
+	int boss;
 	fstream file;
 	string highScore;
 	int currentScore;
 	string theStrHighScore;
 	LPCSTR LPCHigh;
 	bool updateEnemies;
-	bool timePassed;
+	bool gameOver;
+	bool projectilePresent;
+	int bossHealth;
+	bool bossDead;
+	bool soundPlayed;
+	bool endSoundPlayed;
+	bool newHighScore;
 };
 
 #endif
