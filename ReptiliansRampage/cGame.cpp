@@ -109,9 +109,9 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 
 
 	// Load game sounds
-	soundList = { "theme", "shot", "explosion", "playLevel", "enemySpawn", "bossSpawn", "Victory", "bestPilot", "firstLifeLost", "secondLifeLost", "gameOver", "click" };
-	soundTypes = { MUSIC, SFX, SFX, SFX, SFX, SFX, SFX, SFX, SFX, SFX, SFX, SFX };
-	soundsToUse = { "Audio/fadex-vivant.wav", "Audio/shot007.wav", "Audio/explosion2.wav", "Audio/rdyForWar.wav", "Audio/enemySpawn.wav", "Audio/bossSpawn.wav", "Audio/Victory.wav", "Audio/highestScoreSound.wav", "Audio/life1Lost.wav", "Audio/life2Lost.wav", "Audio/gameOver.wav", "Audio/click.wav"  };
+	soundList = { "theme", "shot", "explosion", "playLevel", "enemySpawn", "bossSpawn", "Victory", "bestPilot", "firstLifeLost", "secondLifeLost", "gameOver", "click", "missleLaunch", "bossSpit" };
+	soundTypes = { MUSIC, SFX, SFX, SFX, SFX, SFX, SFX, SFX, SFX, SFX, SFX, SFX, SFX, SFX };
+	soundsToUse = { "Audio/fadex-vivant.wav", "Audio/shot007.wav", "Audio/explosion2.wav", "Audio/rdyForWar.wav", "Audio/enemySpawn.wav", "Audio/bossSpawn.wav", "Audio/Victory.wav", "Audio/highestScoreSound.wav", "Audio/life1Lost.wav", "Audio/life2Lost.wav", "Audio/gameOver.wav", "Audio/click.wav", "Audio/missleLaunch.wav", "Audio/bossSpit.wav"  };
 	for (int sounds = 0; sounds < soundList.size(); sounds++)
 	{
 		theSoundMgr->add(soundList[sounds], soundsToUse[sounds], soundTypes[sounds]);
@@ -506,8 +506,6 @@ void cGame::update(double deltaTime, SDL_Renderer* theRenderer)
 
 		if (lives <= 0)
 		{
-			//theRocket.setActive(false);
-			//theTextureMgr->deleteTexture("spaceship");
 
 			file.open("Data/scoreboard.txt", ios::in);
 			if (file.good() == true)
@@ -631,7 +629,7 @@ void cGame::update(double deltaTime, SDL_Renderer* theRenderer)
 			theTextureMgr->addTexture("LivesCount", theFontMgr->getFont("spaceAge")->createTextTexture(theRenderer, gameTextList[0], SOLID, { 255, 0, 0, 0 }, { 0, 0, 0, 0 }));
 		}
 
-		//ENEMIES SHOOTING__________________________________________________________________________________________________
+		//BOSS SHOOTING__________________________________________________________________________________________________
 
 		if (projectilePresent == false)
 		{
@@ -649,6 +647,8 @@ void cGame::update(double deltaTime, SDL_Renderer* theRenderer)
 				theProjectiles[numProjectiles]->setActive(true);
 				cout << "Projectile added to Vector at position - x: " << (*bossIterator)->getBoundingRect().x << " y: " << (*bossIterator)->getBoundingRect().y << endl;
 				projectilePresent = true;
+				theSoundMgr->getSnd("bossSpit")->play(0);
+
 			}
 		}
 
@@ -836,6 +836,8 @@ bool cGame::getInput(bool theLoop)
 				theBullets[numBullets]->setActive(true);
 				cout << "Bullet added to Vector at position - x: " << theRocket.getBoundingRect().x << " y: " << theRocket.getBoundingRect().y << endl;
 			
+				theSoundMgr->getSnd("missleLaunch")->play(0);
+
 			}
 			default:
 				break;
