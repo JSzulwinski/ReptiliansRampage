@@ -72,8 +72,8 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 	bossHealth = 5;
 
 	// Store the textures
-	textureName = { "enemy", "bullet", "projectile", "spaceship", "theBackground", "menuBackground", "Title", "boss", "heart" };
-	texturesToUse = { "Images\\enemy.png", "Images\\missile.png", "Images\\bullet.png", "Images\\spaceship.png", "Images\\bcg2.jpg", "Images\\bcg2.png", "Images\\TitleImage.png", "Images\\glycon.png", "Images\\heart.png" };
+	textureName = { "enemy", "bullet", "projectile", "spaceship", "theBackground", "menuBackground", "Title", "boss" };
+	texturesToUse = { "Images\\enemy.png", "Images\\missile.png", "Images\\bullet.png", "Images\\spaceship.png", "Images\\bcg2.jpg", "Images\\bcg2.png", "Images\\TitleImage.png", "Images\\glycon.png"};
 	for (int tCount = 0; tCount < textureName.size(); tCount++)
 	{
 		theTextureMgr->addTexture(textureName[tCount], texturesToUse[tCount]);
@@ -92,7 +92,8 @@ void cGame::initialise(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 		cButton * newBtn = new cButton();
 		newBtn->setTexture(theTextureMgr->getTexture(btnNameList[bCount]));
 		newBtn->setSpritePos(btnPos[bCount]);
-		newBtn->setSpriteDimensions(theTextureMgr->getTexture(btnNameList[bCount])->getTWidth(), theTextureMgr->getTexture(btnNameList[bCount])->getTHeight());
+		newBtn->setSpriteDimensions(theTextureMgr->getTexture(btnNameList[bCount])->getTWidth(), 
+			theTextureMgr->getTexture(btnNameList[bCount])->getTHeight());
 		theButtonMgr->add(btnNameList[bCount], newBtn);
 	}
 	theGameState = MENU;
@@ -210,22 +211,26 @@ void cGame::render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 		// Render each Enemy in the vector array
 		for (int draw = 0; draw < theEnemies.size(); draw++)
 		{
-			theEnemies[draw]->render(theRenderer, &theEnemies[draw]->getSpriteDimensions(), &theEnemies[draw]->getSpritePos(), theEnemies[draw]->getSpriteRotAngle(), &theEnemies[draw]->getSpriteCentre(), theEnemies[draw]->getSpriteScale());
+			theEnemies[draw]->render(theRenderer, &theEnemies[draw]->getSpriteDimensions(), &theEnemies[draw]->getSpritePos(), 
+				theEnemies[draw]->getSpriteRotAngle(), &theEnemies[draw]->getSpriteCentre(), theEnemies[draw]->getSpriteScale());
 		}
 		//Render boss
 		for (int draw = 0; draw < theBoss.size(); draw++)
 		{
-			theBoss[draw]->render(theRenderer, &theBoss[draw]->getSpriteDimensions(), &theBoss[draw]->getSpritePos(), theBoss[draw]->getSpriteRotAngle(), &theBoss[draw]->getSpriteCentre(), theBoss[draw]->getSpriteScale());
+			theBoss[draw]->render(theRenderer, &theBoss[draw]->getSpriteDimensions(), &theBoss[draw]->getSpritePos(), 
+				theBoss[draw]->getSpriteRotAngle(), &theBoss[draw]->getSpriteCentre(), theBoss[draw]->getSpriteScale());
 		}
 		// Render each bullet in the vector array
 		for (int draw = 0; draw < theBullets.size(); draw++)
 		{
-			theBullets[draw]->render(theRenderer, &theBullets[draw]->getSpriteDimensions(), &theBullets[draw]->getSpritePos(), theBullets[draw]->getSpriteRotAngle(), &theBullets[draw]->getSpriteCentre(), theBullets[draw]->getSpriteScale());
+			theBullets[draw]->render(theRenderer, &theBullets[draw]->getSpriteDimensions(), &theBullets[draw]->getSpritePos(),
+				theBullets[draw]->getSpriteRotAngle(), &theBullets[draw]->getSpriteCentre(), theBullets[draw]->getSpriteScale());
 		}
 		// Render each projectile in the vector array
 		for (int draw = 0; draw < theProjectiles.size(); draw++)
 		{
-			theProjectiles[draw]->render(theRenderer, &theProjectiles[draw]->getSpriteDimensions(), &theProjectiles[draw]->getSpritePos(), theProjectiles[draw]->getSpriteRotAngle(), &theProjectiles[draw]->getSpriteCentre(), theProjectiles[draw]->getSpriteScale());
+			theProjectiles[draw]->render(theRenderer, &theProjectiles[draw]->getSpriteDimensions(), &theProjectiles[draw]->getSpritePos(), 
+				theProjectiles[draw]->getSpriteRotAngle(), &theProjectiles[draw]->getSpriteCentre(), theProjectiles[draw]->getSpriteScale());
 		}
 		
 		// Render Lives
@@ -239,6 +244,7 @@ void cGame::render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 		pos = { 840, 20, tempTextTexture->getTextureRect().w, tempTextTexture->getTextureRect().h };
 		scale = { 1, 1 };
 		tempTextTexture->renderTexture(theRenderer, tempTextTexture->getTexture(), &tempTextTexture->getTextureRect(), &pos, scale);
+		
 		// render the rocket
 		if (theSpaceship.isActive())
 		{
@@ -261,6 +267,7 @@ void cGame::render(SDL_Window* theSDLWND, SDL_Renderer* theRenderer)
 		pos = { 380, 160, tempTextTexture->getTextureRect().w, tempTextTexture->getTextureRect().h };
 		scale = { 1, 1 };
 		tempTextTexture->renderTexture(theRenderer, tempTextTexture->getTexture(), &tempTextTexture->getTextureRect(), &pos, scale);
+		
 		if (gameOver == true)
 		{
 			//Render Game Over
@@ -355,11 +362,8 @@ void cGame::update(double deltaTime, SDL_Renderer* theRenderer)
 			while (enem <= 5)
 			{
 				theEnemies.push_back(new cEnemy);
-				//enem = theEnemies.size() - 1;
-				//theEnemies[enem]->setSpriteScale({ 0, 0 });
 				theEnemies[enem]->setSpritePos({ (rand() % 1000 + 1), 10 });
 				theEnemies[enem]->setSpriteTranslation({ ((rand() % 600) - 300), 40 });
-				//int randEnemy = rand() % 4;
 				theEnemies[enem]->setTexture(theTextureMgr->getTexture("enemy"));
 				theEnemies[enem]->setSpriteDimensions(theTextureMgr->getTexture("enemy")->getTWidth(), theTextureMgr->getTexture("enemy")->getTHeight());
 				theEnemies[enem]->setenemyVelocity({ 3, 3 });
@@ -640,7 +644,8 @@ void cGame::update(double deltaTime, SDL_Renderer* theRenderer)
 			theStrScore = "SCORE:" + to_string(theScore);
 			LPCSTR LPCScore = theStrScore.c_str();
 			gameTextList[1] = LPCScore;
-			theTextureMgr->addTexture("ScoreValue", theFontMgr->getFont("pixelFont")->createTextTexture(theRenderer, gameTextList[1], SOLID, { 255, 0, 0, 0 }, { 0, 0, 0, 0 }));
+			theTextureMgr->addTexture("ScoreValue", 
+				theFontMgr->getFont("pixelFont")->createTextTexture(theRenderer, gameTextList[1], SOLID, { 255, 0, 0, 0 }, { 0, 0, 0, 0 }));
 
 		}
 
@@ -651,7 +656,8 @@ void cGame::update(double deltaTime, SDL_Renderer* theRenderer)
 			theStrLives = "LIVES:" + to_string(lives);
 			LPCSTR LPCLives = theStrLives.c_str();
 			gameTextList[0] = LPCLives;
-			theTextureMgr->addTexture("LivesCount", theFontMgr->getFont("pixelFont")->createTextTexture(theRenderer, gameTextList[0], SOLID, { 255, 0, 0, 0 }, { 0, 0, 0, 0 }));
+			theTextureMgr->addTexture("LivesCount", 
+				theFontMgr->getFont("pixelFont")->createTextTexture(theRenderer, gameTextList[0], SOLID, { 255, 0, 0, 0 }, { 0, 0, 0, 0 }));
 		}
 
 		//Boss shooting
@@ -662,7 +668,8 @@ void cGame::update(double deltaTime, SDL_Renderer* theRenderer)
 			{
 				theProjectiles.push_back(new cBullet);
 				int numProjectiles = theProjectiles.size() - 1;
-				theProjectiles[numProjectiles]->setSpritePos({ (*bossIterator)->getBoundingRect().x + (*bossIterator)->getSpriteCentre().x, (*bossIterator)->getBoundingRect().y + (*bossIterator)->getSpriteCentre().y });
+				theProjectiles[numProjectiles]->setSpritePos({ (*bossIterator)->getBoundingRect().x + 
+					(*bossIterator)->getSpriteCentre().x, (*bossIterator)->getBoundingRect().y + (*bossIterator)->getSpriteCentre().y });
 				theProjectiles[numProjectiles]->setSpriteTranslation({ 30, -30 });
 				theProjectiles[numProjectiles]->setTexture(theTextureMgr->getTexture("projectile"));
 				theProjectiles[numProjectiles]->setSpriteDimensions(theTextureMgr->getTexture("projectile")->getTWidth(), theTextureMgr->getTexture("projectile")->getTHeight());
@@ -725,7 +732,8 @@ void cGame::update(double deltaTime, SDL_Renderer* theRenderer)
 		theStrHighScore = "HIGH SCORE: " + highScore;
 		LPCHigh = theStrHighScore.c_str();
 		gameTextList[2] = LPCHigh;
-		theTextureMgr->addTexture("HighScore", theFontMgr->getFont("pixelFont")->createTextTexture(theRenderer, gameTextList[2], SOLID, { 0, 255, 0, 255 }, { 0, 0, 0, 0 }));
+		theTextureMgr->addTexture("HighScore", 
+			theFontMgr->getFont("pixelFont")->createTextTexture(theRenderer, gameTextList[2], SOLID, { 0, 255, 0, 255 }, { 0, 0, 0, 0 }));
 
 		//set all conditions to initial values so the game can be replayed
 		lives = 3;
