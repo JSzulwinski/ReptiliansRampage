@@ -10,7 +10,7 @@ cGame.h
 #include <SDL.h>
 
 // Game specific includes
-#include "asteroidsGame.h"
+#include "reptiliansGame.h"
 
 
 using namespace std;
@@ -45,8 +45,7 @@ private:
 	// Sprites for displaying background and rocket textures
 	cSprite spriteBkgd;
 	cSprite spriteMenu;
-	cRocket theRocket;
-	cAsteroid theAsteroid;
+	cSpaceship theSpaceship;
 	cBullet theBullet;
 	cSprite Heart1;
 	cSprite Heart2;
@@ -55,8 +54,8 @@ private:
 	vector<LPCSTR> textureName;
 	vector<LPCSTR> textName;
 	vector<LPCSTR> texturesToUse;
-	vector<cAsteroid*> theAsteroids;
-	vector<cAsteroid*> theBoss;
+	vector<cEnemy*> theEnemies;
+	vector<cEnemy*> theBoss;
 	vector<cBullet*> theBullets;
 	vector<cBullet*> theProjectiles;
 	// Fonts to use
@@ -98,7 +97,7 @@ private:
 	bool updateLives;
 	int lives;
 	string theStrLives;
-	int astro;
+	int enem;
 	int boss;
 	fstream file;
 	string highScore;

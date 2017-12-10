@@ -1,6 +1,6 @@
 /*
 =================
-cRocket.cpp
+cSpaceship.cpp
 - Header file for class definition - IMPLEMENTATION
 =================
 */
@@ -18,4 +18,5 @@ Update the sprite position
 
 void cBkGround::update()
 {
+
 }

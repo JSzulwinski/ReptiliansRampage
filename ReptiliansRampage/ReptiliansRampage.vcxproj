@@ -135,8 +135,8 @@ xcopy /Y "C:\Users\Jakub\source\repos\SDL2\SDL2_mixer-2.0.1\lib\x86\*.dll" "$(Ou
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="asteroidsGame.h" />
-    <ClInclude Include="cAsteroid.h" />
+    <ClInclude Include="reptiliansGame.h" />
+    <ClInclude Include="cEnemy.h" />
     <ClInclude Include="cBkGround.h" />
     <ClInclude Include="cBullet.h" />
     <ClInclude Include="cButton.h" />
@@ -144,7 +144,7 @@ xcopy /Y "C:\Users\Jakub\source\repos\SDL2\SDL2_mixer-2.0.1\lib\x86\*.dll" "$(Ou
     <ClInclude Include="cFont.h" />
     <ClInclude Include="cFontMgr.h" />
     <ClInclude Include="cGame.h" />
-    <ClInclude Include="cRocket.h" />
+    <ClInclude Include="cSpaceship.h" />
     <ClInclude Include="cSDL2WNDManager.h" />
     <ClInclude Include="cSound.h" />
     <ClInclude Include="cSoundMgr.h" />
@@ -154,8 +154,8 @@ xcopy /Y "C:\Users\Jakub\source\repos\SDL2\SDL2_mixer-2.0.1\lib\x86\*.dll" "$(Ou
     <ClInclude Include="GameConstants.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AsteroidsSDL.cpp" />
-    <ClCompile Include="cAsteroid.cpp" />
+    <ClCompile Include="ReptiliansSDL.cpp" />
+    <ClCompile Include="cEnemy.cpp" />
     <ClCompile Include="cBkGround.cpp" />
     <ClCompile Include="cBullet.cpp" />
     <ClCompile Include="cButton.cpp" />
@@ -163,7 +163,7 @@ xcopy /Y "C:\Users\Jakub\source\repos\SDL2\SDL2_mixer-2.0.1\lib\x86\*.dll" "$(Ou
     <ClCompile Include="cFont.cpp" />
     <ClCompile Include="cFontMgr.cpp" />
     <ClCompile Include="cGame.cpp" />
-    <ClCompile Include="cRocket.cpp" />
+    <ClCompile Include="cSpaceship.cpp" />
     <ClCompile Include="cSDL2WNDManager.cpp" />
     <ClCompile Include="cSound.cpp" />
     <ClCompile Include="cSoundMgr.cpp" />

@@ -1,24 +1,24 @@
 /*
 =================
-cAsteroid.h
+cEnemy.h
 - Header file for class definition - SPECIFICATION
 - Header file for the Rocket class which is a child of cSprite class
 =================
 */
-#ifndef _CASTEROID_H
-#define _CASTEROID_H
+#ifndef _cEnemy_H
+#define _cEnemy_H
 #include "cSprite.h"
 
-class cAsteroid : public cSprite
+class cEnemy : public cSprite
 {
 private:
-	SDL_Point asteroidVelocity;
+	SDL_Point enemyVelocity;
 	bool maxRight = false;
 
 public:
-	cAsteroid();
+	cEnemy();
 	void update(double deltaTime);		// Rocket update method
-	void setAsteroidVelocity(SDL_Point asteroidVel);   // Sets the velocity for the asteroid
-	SDL_Point getAsteroidVelocity();				 // Gets the asteroid velocity
+	void setenemyVelocity(SDL_Point EnemyVel);   // Sets the velocity for the Enemy
+	SDL_Point getenemyVelocity();				 // Gets the Enemy velocity
 };
 #endif

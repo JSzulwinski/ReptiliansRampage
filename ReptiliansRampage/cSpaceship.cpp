@@ -1,17 +1,17 @@
 /*
 =================
-cRocket.cpp
+cSpaceship.cpp
 - Header file for class definition - IMPLEMENTATION
 =================
 */
-#include "cRocket.h"
+#include "cSpaceship.h"
 
 /*
 =================================================================
 Defualt Constructor
 =================================================================
 */
-cRocket::cRocket() : cSprite()
+cSpaceship::cSpaceship() : cSprite()
 {
 	this->rocketVelocity = { 0, 0 };
 }
@@ -21,7 +21,7 @@ Update the sprite position
 =================================================================
 */
 
-void cRocket::update(double deltaTime)
+void cSpaceship::update(double deltaTime)
 {
 
 	FPoint direction = { 0.0f, 0.0f };
@@ -44,6 +44,8 @@ void cRocket::update(double deltaTime)
 	this->setSpritePos({ currentSpritePos.x , currentSpritePos.y  });
 	this->setBoundingRect(this->getSpritePos());
 
+	//scale the sprite and move its centre 
+
 	this->scaleSprite();
 	this->setSpriteCentre({ 24, 0 });
 }
@@ -52,7 +54,7 @@ void cRocket::update(double deltaTime)
 Sets the velocity for the rocket
 =================================================================
 */
-void cRocket::setRocketVelocity(SDL_Point rocketVel)
+void cSpaceship::setRocketVelocity(SDL_Point rocketVel)
 {
 	rocketVelocity = rocketVel;
 }
@@ -61,7 +63,7 @@ void cRocket::setRocketVelocity(SDL_Point rocketVel)
 Gets the rocket velocity
 =================================================================
 */
-SDL_Point cRocket::getRocketVelocity()
+SDL_Point cSpaceship::getRocketVelocity()
 {
 	return rocketVelocity;
 }
@@ -92,26 +94,26 @@ Update the sprite position
 //	| Check for collisions
 //	==============================================================
 //	*/
-//	for (vector<cBullet*>::iterator bulletIterartor = theRocketBullets.begin(); bulletIterartor != theRocketBullets.end(); ++bulletIterartor)
+//	for (vector<cBullet*>::iterator bulletIterartor = theSpaceshipBullets.begin(); bulletIterartor != theSpaceshipBullets.end(); ++bulletIterartor)
 //	{
 //		(*bulletIterartor)->update(deltaTime);
-//		for (vector<cAsteroid*>::iterator asteroidIterator = theAsteroids.begin(); asteroidIterator != theAsteroids.end(); ++asteroidIterator)
+//		for (vector<cEnemy*>::iterator enemyIterator = theEnemies.begin(); enemyIterator != theEnemies.end(); ++enemyIterator)
 //		{
-//			if ((*asteroidIterator)->collidedWith((*asteroidIterator)->getBoundingRect(), (*bulletIterartor)->getBoundingRect()))
+//			if ((*enemyIterator)->collidedWith((*enemyIterator)->getBoundingRect(), (*bulletIterartor)->getBoundingRect()))
 //			{
-//				// if a collision set the bullet and asteroid to false
-//				(*asteroidIterator)->setActive(false);
+//				// if a collision set the bullet and Enemy to false
+//				(*enemyIterator)->setActive(false);
 //				(*bulletIterartor)->setActive(false);
 //			}
 //		}
 //	}
 //
-//	vector<cBullet*>::iterator bulletIterartor = theRocketBullets.begin();
-//	while (bulletIterartor != theRocketBullets.end())
+//	vector<cBullet*>::iterator bulletIterartor = theSpaceshipBullets.begin();
+//	while (bulletIterartor != theSpaceshipBullets.end())
 //	{
 //		if ((*bulletIterartor)->isActive() == false)
 //		{
-//			bulletIterartor = theRocketBullets.erase(bulletIterartor);
+//			bulletIterartor = theSpaceshipBullets.erase(bulletIterartor);
 //		}
 //		else
 //		{
